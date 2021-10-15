@@ -9,6 +9,20 @@
 - docker run {imageId} - It runs a container based on the given image Id. (the id given as the build result)
 - docker run -p 3000:3000 {imageId} - We define the mapping port (connect 3000 in the container to the 3000 in the host)
     Since the container has an exposed port (3000) we need to tell the host system to map that port (in the container) to one on the host machine (otherwise, the port in the container is exposed (defined on the image) but not binded to any port) 
-    
-- docker ps - lists running containers
+
+- docker ps -a- lists running containers
 - docker stop {containerName} - stops the container
+- docker run -it node -> pulls node image and runs a contatiner. -it tells docker to expose the interactive part (node command line )
+
+
+Images Commands:
+
+COPY . . 
+-> FIRST . indicates the path from where we will pick files (host)
+-> SECOND . indicates the path to where we will copy all the files (container) (every container has a filesystem)
+
+WORKDIR path
+-> it tells docker where to execute the RUN commands
+For exmaple, if we copy everything into /app (COPY . /app) we may then want to run NPM INSTALL in the /app path. So, Define workdir before we execute the command.
+-> after MKDIR, the relative path in the docker image is pointint to that path. so copy . ./ would mean copy . /app after MKDIR was executed
+-> CMD: it is a command that will be executed when the container is started, and not when the image is being built. The main difference with RUN is that one, RUN would be exceuted while building the image, CMD when running the container (CMD nod server.js, we want the server to start when the image is conteinerized)
