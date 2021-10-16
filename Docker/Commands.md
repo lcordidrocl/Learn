@@ -9,7 +9,8 @@
 - docker run {imageId} - It runs a container based on the given image Id. (the id given as the build result)
 - docker run -p {hostPort}:{containerExposedPort} {imageId} - We define the mapping port (connect containerExposedPort in the container to the hostPort in the host)
     Since the container has an exposed port (3000) we need to tell the host system to map that port (in the container) to one on the host machine (otherwise, the port in the container is exposed (defined on the image) but not binded to any port) 
-
+- docker start {dockerId/dockerName} -> it starts a previously executed container. Remember that docker run creates a new container, and docker start it starts one that was already created. '
+- docker run is in attached mode by default, and start is detached. we can change this with running containers.
 
 - docker ps -a- lists running containers
 - docker stop {containerName} - stops the container
