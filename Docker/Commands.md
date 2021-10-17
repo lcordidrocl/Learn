@@ -1,3 +1,5 @@
+Docker Commands
+
 - docker build .
     it builds the dockerfile found on current directory
     this means that it creates an image based on the instructions on that file, it downloads dependencies and that stuff.
@@ -15,7 +17,8 @@
 - docker ps -a- lists running containers
 - docker stop {containerName} - stops the container
 - docker run -it node -> pulls node image and runs a contatiner. -it tells docker to expose the interactive part (node command line )
-
+- docker run --rm -> it removes the container once finished.
+- docker rm {dockerName}-> removes NOT running containers from the daemon. we can remove many conntainers separating them by commasdocker
 
 Images Commands:
 
@@ -28,3 +31,7 @@ WORKDIR path
 For exmaple, if we copy everything into /app (COPY . /app) we may then want to run NPM INSTALL in the /app path. So, Define workdir before we execute the command.
 -> after MKDIR, the relative path in the docker image is pointint to that path. so copy . ./ would mean copy . /app after MKDIR was executed
 -> CMD: it is a command that will be executed when the container is started, and not when the image is being built. The main difference with RUN is that one, RUN would be exceuted while building the image, CMD when running the container (CMD nod server.js, we want the server to start when the image is conteinerized)
+
+-docker images -> list all images
+-docker rmi {imageName/imageId} -> removes images, if they are not used by a container
+- docker image prune -> removes all the images not used
