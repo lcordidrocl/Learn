@@ -11,7 +11,8 @@ Docker Commands
 - docker run {imageId} - It runs a container based on the given image Id. (the id given as the build result)
 - docker run -p {hostPort}:{containerExposedPort} {imageId} - We define the mapping port (connect containerExposedPort in the container to the hostPort in the host)
     Since the container has an exposed port (3000) we need to tell the host system to map that port (in the container) to one on the host machine (otherwise, the port in the container is exposed (defined on the image) but not binded to any port) 
-- docker start {dockerId/dockerName} -> it starts a previously executed container. Remember that docker run creates a new container, and docker start it starts one that was already created. '
+- docker start {dockerId/dockerName} -> it starts a previously executed container. Remember that docker run creates a new container, and docker start it starts one that was already created. It works like a restarting command. Good thing: we don't need to spcift ports again!
+IMPORTANT: if we ran a container as --it, then when we want to start it it won't work unless we define the related flags. We need to specifiy the -a flagg (attached) and -i (interactive) : docker start -ai
 - docker run is in attached mode by default, and start is detached. we can change this with running containers.
 
 - docker ps -a- lists running containers
@@ -35,3 +36,10 @@ For exmaple, if we copy everything into /app (COPY . /app) we may then want to r
 -docker images -> list all images
 -docker rmi {imageName/imageId} -> removes images, if they are not used by a container
 - docker image prune -> removes all the images not used
+
+# Docker Hub
+- docker login
+after that we can create a repository (docker hub)
+rename an image with the name of the repository(docker tag oldname newname) ( a repository in the docker hub is actually an image)
+we can the call:
+-docker push {locaDockerImageNameThatMatchesRepositoryName}
