@@ -23,3 +23,15 @@ Named Volumes persist after the container is removed.
 Commnands:
 -docker volumnes ls
 - docker run --rm -p 3000:80 --name -v feedback:app/feedback feedbackapp feedbackappi -> we define the named volumen when running the container, so, this volume is not "binded to a particular container through the image definition", like it happens with anonymus volumes
+
+
+Bind Mounts: 
+* manually managed containers, we tell docker where to create the volume, so if we specify the path where we have all the files, then updating the files will achieve real-time app update, which is needed for development.
+We define the bind mount when running a container, using the -v for a second time (the first one tells docker that we are going to use a named volume, and it won't be deleted when removing the container, the second one tells it where to create it and it defines the binded mount)
+* since we spceify with the second volume to copy everything from the abs defined path to a given container file path (/app), the result is that we overwrite everything in the container files, and we erase in that process the node_modules folders created when running npm install. 
+	Fix: create an annonymus container for node modules, so docker saves that folder locally (don't know where). When the binded mount volume tries to copy everything and overwrite the container filesystem, it will find a container for a longer path (bindmount: /app, ann volumne: app/node_modules), and it will skipp that folder. This way we grant 2 things:
+	* Data Persistence
+	* Code refresh instantly (can update code in real time, with the container running)
+	
+shortcut:
+-v "%cd%":/app -> when defining the bind mount we need to define the absolute path of the folder where we want to place the volume. This is a shortcut so we don't write the full pathx
