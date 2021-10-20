@@ -35,3 +35,8 @@ We define the bind mount when running a container, using the -v for a second tim
 	
 shortcut:
 -v "%cd%":/app -> when defining the bind mount we need to define the absolute path of the folder where we want to place the volume. This is a shortcut so we don't write the full pathx
+
+command to run 3 volumes example: docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "C:\Users\lcordi002\source\repos\Learn\Docker\Udemy\module-3-volumes\data-volumes-01-starting-setup:/app" -v /app/node_modules feedbackapp:nodemon (error no such file or directory, open '/app/package.json') -> the error dissapears if I remove this volume: -v "C:\Users\lcordi002\source\repos\Learn\Docker\Udemy\module-3-volumes\data-volumes-01-starting-setup:/app" 
+
+
+- .dockerignore: tells docker which files are ingnored in the copy command (COPY . .)
