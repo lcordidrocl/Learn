@@ -19,3 +19,9 @@ Networks are not automatically creted, we need to define them:
 - We can now use the container name to make reference to its path, so we can update app.js from   'mongodb://172.17.0.2:27017/swfavorites', to   'mongodb://mongodb:27017/swfavorites', where mongodb is the mongo container name
 - since we changed this code, we need to RE BUILD the IMAGE!!!
 - we should now run the favorites app using the network: docker run --name favoritesapp --network {networkName} - d --rm -p 3000:3000 {favoritesImage}
+
+
+How it Works:
+Docker does not inspect source code, it intercepts REQUESTS and use a lookup to replace hosts with understood values, like like host.docker.internal or container images like mongondb
+
+Default network pattern: bridge, there are more, can be specified when creating the network
