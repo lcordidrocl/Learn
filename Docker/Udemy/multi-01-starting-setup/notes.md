@@ -18,3 +18,9 @@ React SPA
 Implementation notes:
 we can use a named volume for the logs, and for the DB
 we can use a bind mount for the live source update -> this requires installing the "re-start server when file changes occur js" library, and update the npm start command on the js apps.
+
+
+Commands:
+- docker run --name mongodb -p -d --rm 27017:27017 mongo
+- docker run --name goals-backend --rm goals-node -> after building the backend image with host.docker.internal ( we are not publishin ports, just getting sure it works)
+- docker run --name goals-backend --rm -d -p 8000:80 goals-node  ->once we verified it connects with DB we then run it publishing the ports
