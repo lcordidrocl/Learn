@@ -21,6 +21,12 @@ we can use a bind mount for the live source update -> this requires installing t
 
 
 Commands:
-- docker run --name mongodb -p -d --rm 27017:27017 mongo
+
+### Baisic initial conteneraized apps ( db - back - ui ) - after building respectively each image
+- docker run --name mongodb -p 27017:27017 -d --rm mongo 
 - docker run --name goals-backend --rm goals-node -> after building the backend image with host.docker.internal ( we are not publishin ports, just getting sure it works)
-- docker run --name goals-backend --rm -d -p 8000:80 goals-node  ->once we verified it connects with DB we then run it publishing the ports
+- docker run --name goals-backend --rm -d -p 8080:80 goals-node  ->once we verified it connects with DB we then run it publishing the ports
+- docker run --name goals-frontend --rm -d -it -p 3000:3000 goals-react -> runs UI -> we need --it flag, because if not, docker closes its
+
+-- since we can't run backend on default port 80 (console errors), we manually modified front URLS to force consuming port 8080. after rebuilding the front image, we could succesfully wired up the 3 containers. 
+-- This is really dependent on each container. Improve using networks.
